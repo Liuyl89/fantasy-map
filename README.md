@@ -26,7 +26,7 @@ npm install
 output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/fantasy-skeleton-react/'
+    publicPath: '/fantasy-ui-react/'
 },
 ```
 
@@ -43,14 +43,14 @@ npm run build
 以nginx为例:
 
 ```bash
-location ^~/fantasy-skeleton-react/{
-	try_files $uri $uri/ /fantasy-skeleton-react/index.html;
+location ^~/fantasy-ui-react/{
+	try_files $uri $uri/ /fantasy-ui-react/index.html;
 }
 ```
 
 通过如下url对页面进行访问：
 
-http://yourHostname/fantasy-skeleton-react/
+http://yourHostname/fantasy-ui-react/
 
 ### 不使用webpack-dev-server进行开发
 ```js
@@ -58,7 +58,7 @@ http://yourHostname/fantasy-skeleton-react/
 output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/fantasy-skeleton-react/'
+    publicPath: '/fantasy-ui-react/'
 },
 ```
 
@@ -75,15 +75,15 @@ npm run build-dev
 以nginx为例:
 
 ```bash
-location ^~/fantasy-skeleton-react/{
-	alias yourPhysicalPath\\fantasy-skeleton-react\\dist\\;
-	try_files $uri $uri/ /fantasy-skeleton-react/index.html;
+location ^~/fantasy-ui-react/{
+	alias yourPhysicalPath\\fantasy-ui-react\\dist\\;
+	try_files $uri $uri/ /fantasy-ui-react/index.html;
 }
 ```
 
 通过如下url对页面进行访问：
 
-http://yourHostname/fantasy-skeleton-react/
+http://yourHostname/fantasy-ui-react/
 
 src目录中代码文件改动时将自动重新编译，刷新页面即可生效
 
@@ -96,7 +96,7 @@ src目录中代码文件改动时将自动重新编译，刷新页面即可生�
 npm run webpack-dev-server
 ```
 
-访问 http://localhost:8070/fantasy-skeleton-react/ 查看页面
+访问 http://localhost:8070/fantasy-ui-react/ 查看页面
 
 src目录中代码文件改动时将自动重新编译，页面更改将自动刷新生效
 
