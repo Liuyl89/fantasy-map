@@ -33,12 +33,12 @@ gulp.task(`build-dev${name}`, [`clean${name}`, `copy${name}`, `webpack:build-dev
 })
 
 // Production build
-gulp.task(`build-dev${name}`, [`clean${name}`, `copy${name}`, `webpack:build${name}`])
+gulp.task(`build${name}`, [`clean${name}`, `copy${name}`, `webpack:build${name}`])
 
 gulp.task(`webpack:build${name}`, (callback) => {
     // modify some webpack config options
     const myConfig = Object.create(webpackConfig)
-    myConfig.plugins = myConfig.plugins.concat(
+    myConfig.plugins = myConfig.plugins.concat([
         new webpack.DefinePlugin({
             'process.env': {
                 // This has effect on the react lib size
@@ -52,8 +52,8 @@ gulp.task(`webpack:build${name}`, (callback) => {
                 warnings: false,
             },
             sourceMap: true,
-        })
-    )
+        }),
+    ])
 
     // run webpack
     webpack(myConfig, (err, stats) => {
@@ -94,9 +94,9 @@ gulp.task(`webpack-dev-server${name}`, [`copy${name}`], () => {
     myConfig.entry.app.unshift(
         `webpack-dev-server/client?http://localhost:${port}`,
         'webpack/hot/dev-server')
-    myConfig.plugins = myConfig.plugins.concat(
-        new webpack.HotModuleReplacementPlugin()
-    )
+    myConfig.plugins = myConfig.plugins.concat([
+        new webpack.HotModuleReplacementPlugin(),
+    ])
     myConfig.module.rules[0].query.env = {
         development: {
             presets: ['react-hmre'],
