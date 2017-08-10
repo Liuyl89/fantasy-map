@@ -1,7 +1,7 @@
 {
-  "name": "fantasy-skeleton-lib",
+  "name": "fantasy-map",
   "version": "0.0.1",
-  "description": "fantasy-skeleton-lib Project from GisUni",
+  "description": "fantasy-map Project from GisUni",
   "main": "index.js",
   "dependencies": {
     "prop-types": "^15.5.10",
@@ -48,14 +48,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "gulp build:fantasy-skeleton-lib",
-    "build-dev": "gulp build-dev:fantasy-skeleton-lib",
-    "webpack-dev-server": "gulp webpack-dev-server:fantasy-skeleton-lib",
+    "build": "gulp build:fantasy-map",
+    "build-dev": "gulp build-dev:fantasy-map",
+    "webpack-dev-server": "gulp webpack-dev-server:fantasy-map",
     "clean": "gulp clean:dist"
   },
   "repository": {
     "type": "git",
-    "url": "https:///github.com/Liuyl89/fantasy-skeleton-lib.git"
+    "url": "https:///github.com/Liuyl89/fantasy-map.git"
   },
   "keywords": [
     "webgis",
@@ -66,7 +66,7 @@
   "author": "Liuyl",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Liuyl89/fantasy-skeleton-lib/issues"
+    "url": "https://github.com/Liuyl89/fantasy-map/issues"
   },
-  "homepage": "https://github.com/Liuyl89/fantasy-skeleton-lib#readme"
+  "homepage": "https://github.com/Liuyl89/fantasy-map#readme"
 }

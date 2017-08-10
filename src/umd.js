@@ -1,5 +1,5 @@
-import * as fantasyUIReact from './index'
+import * as fantasyMap from './index'
 
 module.exports = {
-    ...fantasyUIReact,
+    ...fantasyMap,
 }

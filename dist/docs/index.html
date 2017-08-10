@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Fantasy UI React</title>
+    <title>Fantasy Map</title>
     <meta name="description" content="Fantasy Gis Project from GisUni">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -30,6 +30,12 @@
         href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     
     
+    
+    
+    <link rel="stylesheet"
+        href="https://localhost/arcgis_js_api/library/4.4/esri/css/main.css"/>
+    
+    
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -37,6 +43,11 @@
     your browser</a> to improve your experience and security.</p>
 <![endif]-->
 <!-- Add your site or application content here -->
+<script>
+    window.dojoConfig = {
+        async: 'true'
+    };
+</script>
 
     
     
@@ -85,7 +96,63 @@
         src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
     
-    <script src="vendor.js"></script>
-    <script src="app.js"></script>
+    
+    
+    <script src="http://localhost:8079/fantasy-ui-react/umd/fantasy-ui-react.js"></script>
+    
+    
+    
+    
+    <script src="http://localhost:8079/fantasy-map/umd/fantasy-map.js"></script>
+    
+    
+    
+    
+    <script src="https://localhost/arcgis_js_api/library/4.4/init.js"></script>
+    
+    
+    <script>
+        
+            
+            define("jQuery",[],function () {
+            return jQuery
+            })
+            
+            
+            define("_",[],function () {
+            return _
+            })
+            
+            
+            define("React",[],function () {
+            return React
+            })
+            
+            
+            define("ReactDOM",[],function () {
+            return ReactDOM
+            })
+            
+            
+            define("ReactRouterDOM",[],function () {
+            return ReactRouterDOM
+            })
+            
+            
+            define("PropTypes",[],function () {
+            return PropTypes
+            })
+            
+            
+            define("FantasyUIReact",[],function () {
+            return FantasyUIReact
+            })
+            
+    </script>
+    <script>
+        require(['vendor.js','app.js'],function () {
+
+        })
+    </script>
 </body>
 </html>

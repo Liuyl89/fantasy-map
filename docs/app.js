@@ -5,7 +5,7 @@ import Layout from './Views/Layout'
 export default class App extends React.Component {
     render() {
         return (
-            <BrowserRouter basename="/fantasy-ui-react/docs">
+            <BrowserRouter basename="/fantasy-map/docs">
                 <Layout/>
             </BrowserRouter>
         )

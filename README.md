@@ -1,5 +1,5 @@
 <div align="center">
-  <h1 align="center">Fantasy Skeleton Lib</h1>
+  <h1 align="center">Fantasy Map</h1>
   <p align="center">JS库开发骨架，集成Webpack、Gulp</p>
   <p align="center">Auth by Liuyl from GisUni</p>
 </div>
@@ -26,7 +26,7 @@ npm install
 output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/fantasy-skeleton-lib/'
+    publicPath: '/fantasy-map/'
 },
 ```
 
@@ -43,14 +43,14 @@ npm run build
 以nginx为例:
 
 ```bash
-location ^~/fantasy-skeleton-lib/{
-	try_files $uri $uri/ /fantasy-skeleton-lib/index.html;
+location ^~/fantasy-map/{
+	try_files $uri $uri/ /fantasy-map/index.html;
 }
 ```
 
 通过如下url对页面进行访问：
 
-http://yourHostname/fantasy-skeleton-lib/
+http://yourHostname/fantasy-map/
 
 ### 不使用webpack-dev-server进行开发
 ```js
@@ -58,7 +58,7 @@ http://yourHostname/fantasy-skeleton-lib/
 output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/fantasy-skeleton-lib/'
+    publicPath: '/fantasy-map/'
 },
 ```
 
@@ -75,15 +75,15 @@ npm run build-dev
 以nginx为例:
 
 ```bash
-location ^~/fantasy-skeleton-lib/{
-	alias yourPhysicalPath\\fantasy-skeleton-lib\\dist\\;
-	try_files $uri $uri/ /fantasy-skeleton-lib/index.html;
+location ^~/fantasy-map/{
+	alias yourPhysicalPath\\fantasy-map\\dist\\;
+	try_files $uri $uri/ /fantasy-map/index.html;
 }
 ```
 
 通过如下url对页面进行访问：
 
-http://yourHostname/fantasy-skeleton-lib/
+http://yourHostname/fantasy-map/
 
 src目录中代码文件改动时将自动重新编译，刷新页面即可生效
 
@@ -96,7 +96,7 @@ src目录中代码文件改动时将自动重新编译，刷新页面即可生�
 npm run webpack-dev-server
 ```
 
-访问 http://localhost:8070/fantasy-skeleton-lib/ 查看页面
+访问 http://localhost:8070/fantasy-map/ 查看页面
 
 src目录中代码文件改动时将自动重新编译，页面更改将自动刷新生效
 

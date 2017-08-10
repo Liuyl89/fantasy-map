@@ -8,8 +8,8 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        libraryTarget: 'umd',
-        library: 'FantasySkeletonLib',
+        libraryTarget: 'var',
+        library: 'FantasyMap',
         path: path.resolve(__dirname, 'dist', 'umd'),
         publicPath: '/',
         pathinfo: true,
@@ -18,12 +18,14 @@ module.exports = {
         rules: webpackConfig.module.rules,
     },
     plugins: [],
-    externals: [{
-        jquery: 'jQuery',
-        lodash: '_',
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        'react-router': 'ReactRouter',
-        'react-router-dom': 'ReactRouterDOM',
-    }],
+    externals: [
+        {
+            jquery: 'jQuery',
+            lodash: '_',
+            react: 'React',
+            'react-dom': 'ReactDOM',
+            'react-router-dom': 'ReactRouterDOM',
+            'prop-types': 'PropTypes',
+        },
+    ],
 }

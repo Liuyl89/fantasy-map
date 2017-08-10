@@ -11,11 +11,12 @@ module.exports = {
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist/docs'),
-        publicPath: '/fantasy-skeleton-lib/docs/',
+        libraryTarget: 'amd',
+        publicPath: '/fantasy-map/docs/',
     },
     resolve: {
         alias: {
-            // 'fantasy-skeleton-lib': path.resolve(__dirname, 'src'),
+            'fantasy-map': path.resolve(__dirname, 'src'),
         },
     },
     module: {
@@ -69,7 +70,7 @@ module.exports = {
             hash: true,
             filename: 'index.html',
             inject: false,
-            title: 'Fantasy Skeleton Lib',
+            title: 'Fantasy Map',
             cdn: 'https://cdn.bootcss.com/',
             scripts: [{
                 file: 'modernizr.min.js',
@@ -105,9 +106,17 @@ module.exports = {
                 path: 'bootstrap/',
                 version: '3.3.7',
             }, {
-                file: 'fantasy-skeleton-lib.js',
-                path: 'http://localhost:8079/fantasy-skeleton-lib/umd/',
-                version: '1.0.0',
+                file: 'fantasy-ui-react.js',
+                path: 'http://localhost:8079/fantasy-ui-react/umd/',
+                locale: true,
+            }, {
+                file: 'fantasy-map.js',
+                path: 'http://localhost:8079/fantasy-map/umd/',
+                locale: true,
+            }, {
+                file: 'init.js',
+                path: 'https://localhost/arcgis_js_api/library/4.4/',
+                version: '4.4',
                 locale: true,
             }],
             links: [{
@@ -125,7 +134,19 @@ module.exports = {
                 file: 'css/bootstrap.min.css',
                 path: 'bootstrap/',
                 version: '3.3.7',
+            }, {
+                rel: 'stylesheet',
+                file: 'main.css',
+                locale: true,
+                path: 'https://localhost/arcgis_js_api/library/4.4/esri/css/',
             }],
+            // 在index.html中define以下名称，使其在AMD中能够被正确引用
+            // 这将在编译index.html文件是生成一些额外代码
+            // 列表中的名称应该是要引用的库的全局变量名称
+            dojoDefines: [
+                'jQuery', '_', 'React', 'ReactDOM', 'ReactRouterDOM', 'PropTypes',
+                'FantasyUIReact', // 'FantasyMap',
+            ],
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',
@@ -133,13 +154,27 @@ module.exports = {
         }),
 
     ],
-    externals: [{
-        jquery: 'jQuery',
-        lodash: '_',
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        'react-router-dom': 'ReactRouterDOM',
-        'prop-types': 'PropTypes',
-        'fantasy-skeleton-lib': 'FantasySkeletonLib',
-    }],
+    externals: [
+        {
+            jquery: 'jQuery',
+            lodash: '_',
+            react: 'React',
+            'react-dom': 'ReactDOM',
+            'react-router-dom': 'ReactRouterDOM',
+            'prop-types': 'PropTypes',
+            'fantasy-ui-react': 'FantasyUIReact',
+            // 'fantasy-map': 'FantasyMap',
+        },
+        (context, request, callback) => {
+            if (/^dojo/.test(request) ||
+                /^dojox/.test(request) ||
+                /^dijit/.test(request) ||
+                /^esri/.test(request)
+            ) {
+                return callback(null, `amd ${request}`)
+            }
+            return callback()
+        },
+    ],
+
 }

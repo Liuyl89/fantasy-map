@@ -28,6 +28,11 @@
     your browser</a> to improve your experience and security.</p>
 <![endif]-->
 <!-- Add your site or application content here -->
+<script>
+    window.dojoConfig = {
+        async: 'true'
+    };
+</script>
 <% for(var i=0; i<htmlWebpackPlugin.options.scripts.length ; i++) {%>
     <% var script=htmlWebpackPlugin.options.scripts[i]%>
     <% if(!script.locale) {%>
@@ -37,7 +42,18 @@
     <script src="<%= script.path %><%= script.file %>"></script>
     <% } %>
     <% } %>
-    <script src="vendor.js"></script>
-    <script src="app.js"></script>
+    <script>
+        <% for(var i=0; i<htmlWebpackPlugin.options.dojoDefines.length ; i++) {%>
+            <% var def=htmlWebpackPlugin.options.dojoDefines[i]%>
+            define("<%= def %>",[],function () {
+            return <%= def %>
+            })
+            <% } %>
+    </script>
+    <script>
+        require(['vendor.js','app.js'],function () {
+
+        })
+    </script>
 </body>
 </html>
