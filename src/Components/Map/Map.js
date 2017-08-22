@@ -1,29 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import * as platformDetect from '../../lib/platformDetect'
+import MapNoMatch from './MapNoMatch'
+import MapArcgis4 from './MapArcgis4'
+
+function getMatch() {
+    if (platformDetect.isArcgis4()) {
+        return MapArcgis4
+    }
+    return MapNoMatch
+}
 
 class Map extends React.Component {
-    static propTypes = {}
+    static propTypes = {
+        children: PropTypes.array,
+    }
     static defaultProps = {}
 
-    componentDidMount() {
-        window.require(['esri/Map', 'esri/views/MapView'], (EsriMap, MapView) => {
-            this.map = new EsriMap({
-                basemap: 'streets',
-            })
-
-            this.view = new MapView({
-                container: this.dom,
-                map: this.map,
-            })
-        })
+    constructor() {
+        super()
+        this.mapClass = getMatch()
     }
 
     render() {
-        return (
-            <div style={{ width: '100%', height: '100%' }} ref={(dom) => {
-                this.dom = dom
-            }}/>
-        )
+        const MapClass = this.mapClass
+        return (<MapClass {...this.props}/>)
     }
 }
 export default Map
