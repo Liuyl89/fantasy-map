@@ -1,12 +1,12 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
+const path = require('path'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    webpack = require('webpack'),
+    reactDllManifest = require('../fantasy-dll/fantasy-react-dll/dist/manifest.json')
 
 module.exports = {
     entry: {
         vendor: ['./docs/vendor.js'],
         app: ['./docs/index.js'],
-
     },
     output: {
         filename: '[name].js',
@@ -65,81 +65,43 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
+            inject: true,
+            chunks: ['manifest', 'app', 'vendor'],
             template: './docs/index.html',
             hash: true,
             filename: 'index.html',
-            inject: false,
             title: 'Fantasy Skeleton Lib',
             cdn: 'https://cdn.bootcss.com/',
             scripts: [{
                 file: 'modernizr.min.js',
-                path: 'modernizr/',
-                version: '2.8.3',
-            }, {
-                file: 'jquery.min.js',
-                path: 'jquery/',
-                version: '3.2.1',
-            }, {
-                file: 'lodash.min.js',
-                path: 'lodash.js/',
-                version: '4.17.4',
-            }, {
-                file: 'prop-types.min.js',
-                path: 'https://unpkg.com/prop-types/',
-                version: '15.5.10',
+                path: 'assets/js/',
                 locale: true,
             }, {
-                file: 'react.js',
-                path: 'react/',
-                version: '15.6.1',
+                file: 'fantasyReactDll.js',
+                path: '/fantasy-react-dll/',
+                locale: true,
             }, {
-                file: 'react-dom.js',
-                path: 'react/',
-                version: '15.6.1',
-            }, {
-                file: 'react-router-dom.js',
-                path: 'react-router-dom/',
-                version: '4.1.2',
-            }, {
-                file: 'js/bootstrap.min.js',
-                path: 'bootstrap/',
-                version: '3.3.7',
-            }, {
-                file: 'fantasy-skeleton-lib.js',
-                path: 'http://localhost:8079/fantasy-skeleton-lib/umd/',
-                version: '1.0.0',
+                file: 'fantasy-ui-react.js',
+                path: '/fantasy-ui-react/umd/',
                 locale: true,
             }],
-            links: [{
-                rel: 'stylesheet',
-                file: 'normalize.min.css',
-                path: 'normalize/',
-                version: '7.0.0',
-            }, {
-                rel: 'stylesheet',
-                file: 'assets/main.css',
-                locale: true,
-                path: '',
-            }, {
-                rel: 'stylesheet',
-                file: 'css/bootstrap.min.css',
-                path: 'bootstrap/',
-                version: '3.3.7',
-            }],
+            links: [],
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',
+            jQuery: 'jquery',
             _: 'lodash',
         }),
-
-    ],
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'manifest',
+            chunks: ['vendor', 'app'],
+        }),
+        new webpack.DllReferencePlugin({
+            name: 'fantasyReactDll',
+            sourceType: 'var',
+            manifest: reactDllManifest,
+        })],
     externals: [{
-        jquery: 'jQuery',
-        lodash: '_',
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        'react-router-dom': 'ReactRouterDOM',
-        'prop-types': 'PropTypes',
         'fantasy-skeleton-lib': 'FantasySkeletonLib',
     }],
 }
