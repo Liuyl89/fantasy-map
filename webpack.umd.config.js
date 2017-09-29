@@ -1,6 +1,8 @@
 const path = require('path'),
     webpackConfig = require('./webpack.config'),
-    pkg = require('./package.json')
+    pkg = require('./package.json'),
+    webpack = require('webpack'),
+    reactDllManifest = require('../fantasy-dll/fantasy-react-dll/dist/manifest.json')
 
 module.exports = {
     entry: {
@@ -8,22 +10,22 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        libraryTarget: 'umd',
+        libraryTarget: 'var',
         library: 'FantasyUIReact',
         path: path.resolve(__dirname, 'dist', 'umd'),
-        publicPath: '/',
-        pathinfo: true,
     },
     module: {
-        rules: webpackConfig.module.rules
+        rules: webpackConfig.module.rules,
     },
-    plugins: [],
-    externals: [{
-        jquery: 'jQuery',
-        lodash: '_',
-        react: 'React',
-        'react-dom': 'ReactDOM',
-        'react-router': 'ReactRouter',
-        'react-router-dom': 'ReactRouterDOM',
-    }]
+    plugins: [new webpack.DllReferencePlugin({
+        name: 'fantasyReactDll',
+        sourceType: 'var',
+        manifest: reactDllManifest,
+    }), new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        _: 'lodash',
+    })],
+    externals: [],
+
 }

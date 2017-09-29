@@ -28,7 +28,7 @@ class Navbar extends React.Component {
     }
 
     render() {
-        let navbarClassName = 'navbar navbar-default navbar-inverse'
+        let navbarClassName = 'navbar navbar-default '
         let containerClassName = 'container'
         if (this.props.fixed === 'top') {
             navbarClassName += 'navbar-fixed-top '
