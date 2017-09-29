@@ -1,4 +1,4 @@
-define(["React","jQuery","ReactDOM","ReactRouterDOM","FantasyUIReact","PropTypes"], function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_15__) { return /******/ (function(modules) { // webpackBootstrap
+define(["React","PropTypes","jQuery","ReactDOM","ReactRouterDOM","FantasyUIReact"], function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_13__) { return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -60,7 +60,7 @@ define(["React","jQuery","ReactDOM","ReactRouterDOM","FantasyUIReact","PropTypes
 /******/ 	__webpack_require__.p = "/fantasy-map/docs/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,17 +70,53 @@ define(["React","jQuery","ReactDOM","ReactRouterDOM","FantasyUIReact","PropTypes
 module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(5);
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.isArcgis4 = undefined;
+
+var _env = __webpack_require__(17);
+
+var _env2 = _interopRequireDefault(_env);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+if (window.require) {
+    window.require(['esri/kernel'], function (esriNS) {
+        _env2.default.platform.type = 'arcgis';
+        _env2.default.platform.version = esriNS.version;
+    });
+}
+function isArcgis4() {
+    return _env2.default.platform.type === 'arcgis' && _env2.default.platform.version[0] && _env2.default.platform.version[0] === '4';
+}
+
+exports.isArcgis4 = isArcgis4;
+
+/***/ }),
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(7);
 
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -90,15 +126,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(7);
+var _reactDom = __webpack_require__(9);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _app = __webpack_require__(8);
+var _app = __webpack_require__(10);
 
 var _app2 = _interopRequireDefault(_app);
 
-__webpack_require__(16);
+__webpack_require__(20);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -107,22 +143,22 @@ var render = function render(NewApp) {
     _reactDom2.default.render(_react2.default.createElement(NewApp, null), $mountNode[0]);
 };
 render(_app2.default);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
 /* 8 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -138,9 +174,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(9);
+var _reactRouterDom = __webpack_require__(11);
 
-var _Layout = __webpack_require__(10);
+var _Layout = __webpack_require__(12);
 
 var _Layout2 = _interopRequireDefault(_Layout);
 
@@ -178,13 +214,13 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -200,9 +236,9 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _fantasyUiReact = __webpack_require__(11);
+var _fantasyUiReact = __webpack_require__(13);
 
-var _fantasyMap = __webpack_require__(12);
+var _fantasyMap = __webpack_require__(14);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -275,13 +311,13 @@ var Layout = function (_React$Component) {
 exports.default = Layout;
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -290,20 +326,23 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_11__;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.Map = undefined;
 
-var _index = __webpack_require__(13);
+var _Map = __webpack_require__(15);
 
 Object.defineProperty(exports, 'Map', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_index).default;
+    return _interopRequireDefault(_Map).default;
   }
 });
+
+__webpack_require__(2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -314,7 +353,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _Map = __webpack_require__(14);
+var _Map = __webpack_require__(16);
 
 var _Map2 = _interopRequireDefault(_Map);
 
@@ -323,7 +362,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Map2.default;
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -339,7 +378,104 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(15);
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _platformDetect = __webpack_require__(2);
+
+var platformDetect = _interopRequireWildcard(_platformDetect);
+
+var _MapNoMatch = __webpack_require__(18);
+
+var _MapNoMatch2 = _interopRequireDefault(_MapNoMatch);
+
+var _MapArcgis = __webpack_require__(19);
+
+var _MapArcgis2 = _interopRequireDefault(_MapArcgis);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function getMatch() {
+    if (platformDetect.isArcgis4()) {
+        return _MapArcgis2.default;
+    }
+    return _MapNoMatch2.default;
+}
+
+var Map = function (_React$Component) {
+    _inherits(Map, _React$Component);
+
+    function Map() {
+        _classCallCheck(this, Map);
+
+        var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this));
+
+        _this.mapClass = getMatch();
+        return _this;
+    }
+
+    _createClass(Map, [{
+        key: 'render',
+        value: function render() {
+            var MapClass = this.mapClass;
+            return _react2.default.createElement(MapClass, this.props);
+        }
+    }]);
+
+    return Map;
+}(_react2.default.Component);
+
+Map.propTypes = {
+    children: _propTypes2.default.array
+};
+Map.defaultProps = {};
+exports.default = Map;
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var env = {
+    platform: {
+        type: 'unknown',
+        version: 'unknown'
+    }
+};
+exports.default = env;
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -351,28 +487,95 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Map = function (_React$Component) {
-    _inherits(Map, _React$Component);
+var MapNoMatch = function (_React$Component) {
+    _inherits(MapNoMatch, _React$Component);
 
-    function Map() {
-        _classCallCheck(this, Map);
+    function MapNoMatch() {
+        _classCallCheck(this, MapNoMatch);
 
-        return _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (MapNoMatch.__proto__ || Object.getPrototypeOf(MapNoMatch)).apply(this, arguments));
     }
 
-    _createClass(Map, [{
+    _createClass(MapNoMatch, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { style: { width: '100%', height: '100%' } },
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    '\u5F53\u524D\u8FD0\u884C\u73AF\u5883\u4E0B\u672A\u627E\u5230\u5339\u914D\u7684Map\u7EC4\u4EF6'
+                )
+            );
+        }
+    }]);
+
+    return MapNoMatch;
+}(_react2.default.Component);
+
+MapNoMatch.propTypes = {
+    children: _propTypes2.default.array
+};
+MapNoMatch.defaultProps = {};
+exports.default = MapNoMatch;
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(1);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MapArcgis4 = function (_React$Component) {
+    _inherits(MapArcgis4, _React$Component);
+
+    function MapArcgis4() {
+        _classCallCheck(this, MapArcgis4);
+
+        return _possibleConstructorReturn(this, (MapArcgis4.__proto__ || Object.getPrototypeOf(MapArcgis4)).apply(this, arguments));
+    }
+
+    _createClass(MapArcgis4, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
             var _this2 = this;
 
             window.require(['esri/Map', 'esri/views/MapView'], function (EsriMap, MapView) {
                 _this2.map = new EsriMap({
-                    basemap: 'streets'
+                    basemap: _this2.props.basemap,
+                    layers: _this2.props.layers
                 });
 
                 _this2.view = new MapView({
                     container: _this2.dom,
-                    map: _this2.map
+                    map: _this2.map,
+                    extent: _this2.props.extent
+                });
+                _this2.view.on('click', function (event) {
+                    console.log(event.mapPoint.x + ',' + event.mapPoint.y);
                 });
             });
         }
@@ -381,33 +584,36 @@ var Map = function (_React$Component) {
         value: function render() {
             var _this3 = this;
 
-            return _react2.default.createElement('div', { style: { width: '100%', height: '100%' }, ref: function ref(dom) {
+            return _react2.default.createElement('div', { style: { width: '100%', height: '100%' },
+                ref: function ref(dom) {
                     _this3.dom = dom;
-                } });
+                }
+            });
         }
     }]);
 
-    return Map;
+    return MapArcgis4;
 }(_react2.default.Component);
 
-Map.propTypes = {};
-Map.defaultProps = {};
-exports.default = Map;
+MapArcgis4.propTypes = {
+    children: _propTypes2.default.array,
+    layers: _propTypes2.default.array,
+    basemap: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object])
+};
+MapArcgis4.defaultProps = {
+    basemap: null,
+    layers: []
+};
+exports.default = MapArcgis4;
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
-
-/***/ }),
-/* 16 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(17);
+var content = __webpack_require__(21);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -415,7 +621,7 @@ var transform;
 var options = {}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(19)(content, options);
+var update = __webpack_require__(23)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -432,10 +638,10 @@ if(false) {
 }
 
 /***/ }),
-/* 17 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(18)(undefined);
+exports = module.exports = __webpack_require__(22)(undefined);
 // imports
 
 
@@ -446,7 +652,7 @@ exports.push([module.i, "html, body {\n  height: 100vh;\n  overflow-x: hidden; }
 
 
 /***/ }),
-/* 18 */
+/* 22 */
 /***/ (function(module, exports) {
 
 /*
@@ -528,7 +734,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 19 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -574,7 +780,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(20);
+var	fixUrls = __webpack_require__(24);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -887,7 +1093,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 20 */
+/* 24 */
 /***/ (function(module, exports) {
 
 
