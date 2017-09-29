@@ -2,7 +2,7 @@ const path = require('path'),
     webpackConfig = require('./webpack.config'),
     pkg = require('./package.json'),
     webpack = require('webpack'),
-    reactDllManifest = require('../fantasy-dll/fantasy-react-dll/dist/manifest.json')
+    reactDllManifest = require('../../../fantasy-dll/fantasy-react-dll/dist/manifest.json')
 
 module.exports = {
     entry: {

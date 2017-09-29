@@ -1,7 +1,7 @@
 const path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     webpack = require('webpack'),
-    reactDllManifest = require('../fantasy-dll/fantasy-react-dll/dist/manifest.json')
+    reactDllManifest = require('../../../fantasy-dll/fantasy-react-dll/dist/manifest.json')
 
 module.exports = {
     entry: {
@@ -13,11 +13,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist/docs'),
         publicPath: '/fantasy-skeleton-lib/docs/',
     },
-    resolve: {
-        alias: {
-            // 'fantasy-skeleton-lib': path.resolve(__dirname, 'src'),
-        },
-    },
+    resolve: {},
     module: {
         rules: [{
             test: /.jsx?$/,
@@ -81,8 +77,8 @@ module.exports = {
                 path: '/fantasy-react-dll/',
                 locale: true,
             }, {
-                file: 'fantasy-ui-react.js',
-                path: '/fantasy-ui-react/umd/',
+                file: 'fantasy-skeleton-lib.js',
+                path: '/fantasy-skeleton-lib/umd/',
                 locale: true,
             }],
             links: [],

@@ -29,7 +29,6 @@ const getUnhandledProps = (Component, props) => {
         if (autoControlledProps) pushUnique(autoControlledProps, handledProps)
         if (defaultProps) pushUnique(Object.keys(defaultProps), handledProps)
         if (propTypes) pushUnique(Object.keys(propTypes), handledProps)
-
         Component.handledProps = handledProps
     }
 
