@@ -17,7 +17,7 @@ gulp.task(`clean${name}`, (cb) => {
 // Build
 // ----------------------------------------
 const myDevConfig = Object.create(webpackUMDConfig)
-myDevConfig.devtool = 'cheap-module-eval-source-map'// 'source-map'
+myDevConfig.devtool = 'cheap-module-eval-source-map'
 const devCompiler = webpack(myDevConfig)
 gulp.task(`webpack:build-dev${name}`, (callback) => {
     devCompiler.run((err, stats) => {

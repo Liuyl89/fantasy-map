@@ -27,4 +27,5 @@ module.exports = {
         _: 'lodash',
     })],
     externals: [],
+
 }

@@ -24,6 +24,7 @@ module.exports = {
         "react/prop-types": 0,
         "arrow-body-style": 0,
         "one-var": 0,
+        "no-param-reassign": 0,
     },
     "extends": ["airbnb-base", 'plugin:react/recommended']
 };

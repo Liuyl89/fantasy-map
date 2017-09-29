@@ -1,24 +1,19 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
+const path = require('path'),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    webpack = require('webpack'),
+    reactDllManifest = require('../fantasy-dll/fantasy-react-dll/dist/manifest.json')
 
 module.exports = {
     entry: {
         vendor: ['./docs/vendor.js'],
         app: ['./docs/index.js'],
-
     },
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist/docs'),
-        libraryTarget: 'amd',
-        publicPath: '/fantasy-map/docs/',
+        publicPath: '/fantasy-skeleton-lib/docs/',
     },
-    resolve: {
-        alias: {
-            'fantasy-map': path.resolve(__dirname, 'src'),
-        },
-    },
+    resolve: {},
     module: {
         rules: [{
             test: /.jsx?$/,
@@ -66,115 +61,43 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
+            inject: true,
+            chunks: ['manifest', 'app', 'vendor'],
             template: './docs/index.html',
             hash: true,
             filename: 'index.html',
-            inject: false,
             title: 'Fantasy Map',
             cdn: 'https://cdn.bootcss.com/',
             scripts: [{
                 file: 'modernizr.min.js',
-                path: 'modernizr/',
-                version: '2.8.3',
-            }, {
-                file: 'jquery.min.js',
-                path: 'jquery/',
-                version: '3.2.1',
-            }, {
-                file: 'lodash.min.js',
-                path: 'lodash.js/',
-                version: '4.17.4',
-            }, {
-                file: 'prop-types.min.js',
-                path: 'https://unpkg.com/prop-types/',
-                version: '15.5.10',
+                path: 'assets/js/',
                 locale: true,
             }, {
-                file: 'react.js',
-                path: 'react/',
-                version: '15.6.1',
-            }, {
-                file: 'react-dom.js',
-                path: 'react/',
-                version: '15.6.1',
-            }, {
-                file: 'react-router-dom.js',
-                path: 'react-router-dom/',
-                version: '4.1.2',
-            }, {
-                file: 'js/bootstrap.min.js',
-                path: 'bootstrap/',
-                version: '3.3.7',
-            }, {
-                file: 'fantasy-ui-react.js',
-                path: 'http://localhost:8079/fantasy-ui-react/umd/',
+                file: 'fantasyReactDll.js',
+                path: '/fantasy-react-dll/',
                 locale: true,
             }, {
                 file: 'fantasy-map.js',
-                path: 'http://localhost:8079/fantasy-map/umd/',
-                locale: true,
-            }, {
-                file: 'init.js',
-                path: 'https://localhost/arcgis_js_api/library/4.4/',
-                version: '4.4',
+                path: '/fantasy-map/umd/',
                 locale: true,
             }],
-            links: [{
-                rel: 'stylesheet',
-                file: 'normalize.min.css',
-                path: 'normalize/',
-                version: '7.0.0',
-            }, {
-                rel: 'stylesheet',
-                file: 'assets/main.css',
-                locale: true,
-                path: '',
-            }, {
-                rel: 'stylesheet',
-                file: 'css/bootstrap.min.css',
-                path: 'bootstrap/',
-                version: '3.3.7',
-            }, {
-                rel: 'stylesheet',
-                file: 'main.css',
-                locale: true,
-                path: 'https://localhost/arcgis_js_api/library/4.4/esri/css/',
-            }],
-            // 在index.html中define以下名称，使其在AMD中能够被正确引用
-            // 这将在编译index.html文件是生成一些额外代码
-            // 列表中的名称应该是要引用的库的全局变量名称
-            dojoDefines: [
-                'jQuery', '_', 'React', 'ReactDOM', 'ReactRouterDOM', 'PropTypes',
-                'FantasyUIReact', // 'FantasyMap',
-            ],
+            links: [],
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',
+            jQuery: 'jquery',
             _: 'lodash',
         }),
-
-    ],
-    externals: [
-        {
-            jquery: 'jQuery',
-            lodash: '_',
-            react: 'React',
-            'react-dom': 'ReactDOM',
-            'react-router-dom': 'ReactRouterDOM',
-            'prop-types': 'PropTypes',
-            'fantasy-ui-react': 'FantasyUIReact',
-            // 'fantasy-map': 'FantasyMap',
-        },
-        (context, request, callback) => {
-            if (/^dojo/.test(request) ||
-                /^dojox/.test(request) ||
-                /^dijit/.test(request) ||
-                /^esri/.test(request)
-            ) {
-                return callback(null, `amd ${request}`)
-            }
-            return callback()
-        },
-    ],
-
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'manifest',
+            chunks: ['vendor', 'app'],
+        }),
+        new webpack.DllReferencePlugin({
+            name: 'fantasyReactDll',
+            sourceType: 'var',
+            manifest: reactDllManifest,
+        })],
+    externals: [{
+        'fantasy-map': 'FantasyMap',
+    }],
 }

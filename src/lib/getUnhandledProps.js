@@ -5,8 +5,8 @@
  * @param {Array} target - An array to receive unique elements from the `source`
  * @returns {Array} Mutated `target` array
  */
-const pushUnique = (source, target) => source.forEach(x => {
-  if (target.indexOf(x) === -1) target.push(x)
+const pushUnique = (source, target) => source.forEach((x) => {
+    if (target.indexOf(x) === -1) target.push(x)
 })
 
 /**
@@ -17,30 +17,29 @@ const pushUnique = (source, target) => source.forEach(x => {
  * @returns {{}} A shallow copy of the prop object
  */
 const getUnhandledProps = (Component, props) => {
-  const { autoControlledProps, defaultProps, propTypes } = Component
-  let { handledProps } = Component
+    const { autoControlledProps, defaultProps, propTypes } = Component
+    let { handledProps } = Component
 
-  // ----------------------------------------
-  // Calculate handledProps once and cache
-  // ----------------------------------------
-  if (!handledProps) {
-    handledProps = []
+    // ----------------------------------------
+    // Calculate handledProps once and cache
+    // ----------------------------------------
+    if (!handledProps) {
+        handledProps = []
 
-    if (autoControlledProps) pushUnique(autoControlledProps, handledProps)
-    if (defaultProps) pushUnique(Object.keys(defaultProps), handledProps)
-    if (propTypes) pushUnique(Object.keys(propTypes), handledProps)
+        if (autoControlledProps) pushUnique(autoControlledProps, handledProps)
+        if (defaultProps) pushUnique(Object.keys(defaultProps), handledProps)
+        if (propTypes) pushUnique(Object.keys(propTypes), handledProps)
+        Component.handledProps = handledProps
+    }
 
-    Component.handledProps = handledProps
-  }
-
-  // ----------------------------------------
-  // Return _unhandled_ props
-  // ----------------------------------------
-  return Object.keys(props).reduce((acc, prop) => {
-    if (prop === 'childKey') return acc
-    if (handledProps.indexOf(prop) === -1) acc[prop] = props[prop]
-    return acc
-  }, {})
+    // ----------------------------------------
+    // Return _unhandled_ props
+    // ----------------------------------------
+    return Object.keys(props).reduce((acc, prop) => {
+        if (prop === 'childKey') return acc
+        if (handledProps.indexOf(prop) === -1) acc[prop] = props[prop]
+        return acc
+    }, {})
 }
 
 export default getUnhandledProps
